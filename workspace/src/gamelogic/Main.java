@@ -1,3 +1,4 @@
+//Hello
 package gamelogic;
 
 import java.awt.Color;
@@ -42,12 +43,13 @@ public class Main extends GameBase implements PlayerDieListener, PlayerWinListen
 	public void init() {
 		GameResources.load();
 
-		currentLevelIndex = 0;
+		currentLevelIndex = 2;
 
-		levels = new LevelData[2];
+		levels = new LevelData[3];
 		try {
-			levels[0] = LeveldataLoader.loadLeveldata("/workspaces/platformer/workspace/maps/testMap.txt");
+			levels[0] = LeveldataLoader.loadLeveldata("/workspaces/platformer/workspace/maps/waterMap.txt");
 			levels[1] = LeveldataLoader.loadLeveldata("/workspaces/platformer/workspace/maps/map1.txt");
+			levels[2] = LeveldataLoader.loadLeveldata("/workspaces/platformer/workspace/maps/testMap.txt");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

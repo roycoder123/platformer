@@ -19,6 +19,8 @@ public class PhysicsObject extends GameObject{
 	protected Tile[] collisionMatrix;
 	protected Tile[] closestMatrix;
 
+	public boolean isJumping;
+
 	private Level level;
 	
 	public PhysicsObject(float x, float y, int width, int height, Level level) {
@@ -57,6 +59,10 @@ public class PhysicsObject extends GameObject{
 		if(rig != null) {
 			position.x = rig.getHitbox().getX() - (hitbox.getOffsetX() + hitbox.getWidth());
 			movementVector.x = 0;
+		}
+
+		if(collisionMatrix[BOT] != null){
+			isJumping = false;
 		}
 
 		position.x += movementVector.x * tslf;

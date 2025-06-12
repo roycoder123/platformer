@@ -10,8 +10,8 @@ public class LevelData {
 	
 	public LevelData(Mapdata mapdata, int playerX, int playerY) {
 		this.mapdata = mapdata;
-		this.playerX = playerX;
 		this.playerY = playerY;
+		this.playerX = playerX;
 	}
 	
 	//-----------------------------Getters

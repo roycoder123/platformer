@@ -14,30 +14,24 @@ public class Player extends PhysicsObject{
 	public float walkSpeed = 400;
 	public float jumpPower = 1350;
 
-	private boolean isJumping = false;
+	public boolean isJumping = false;
+	private long gasTracker;
 
 	public Player(float x, float y, Level level) {
 	
 		super(x, y, level.getLevelData().getTileSize(), level.getLevelData().getTileSize(), level);
 		int offset =(int)(level.getLevelData().getTileSize()*0.1); //hitbox is offset by 10% of the player size.
 		this.hitbox = new RectHitbox(this, offset,offset, width -offset, height - offset);
+		gasTracker = 0;
 	}
+
+ public void displayGasTimer(long tracker){
+	gasTracker = tracker;
+ }
 
 	@Override
 	public void update(float tslf) {
 		super.update(tslf);
-		
-		movementVector.x = 0;
-		if(PlayerInput.isLeftKeyDown()) {
-			movementVector.x = -walkSpeed;
-		}
-		if(PlayerInput.isRightKeyDown()) {
-			movementVector.x = +walkSpeed;
-		}
-		if(PlayerInput.isJumpKeyDown() && !isJumping) {
-			movementVector.y = -jumpPower;
-			isJumping = true;
-		}
 		
 		isJumping = true;
 		if(collisionMatrix[BOT] != null) isJumping = false;
@@ -45,9 +39,6 @@ public class Player extends PhysicsObject{
 
 	@Override
 	public void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
-		MyGraphics.fillRectWithOutline(g, (int)getX(), (int)getY(), width, height);
-		
 		if(Main.DEBUGGING) {
 			for (int i = 0; i < closestMatrix.length; i++) {
 				Tile t = closestMatrix[i];
